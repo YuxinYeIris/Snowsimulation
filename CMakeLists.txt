@@ -82,13 +82,7 @@ find_package(
 list(APPEND external_libs glm::glm)
 
 #Eigen
-find_package(
-    Eigen3
-    REQUIRED
-    PATHS ${external_source_dir}/eigen-3.3.8/cmake
-    NO_DEFAULT_PATH
-)
-list(APPEND external_libs Eigen)
+include_directories(${external_source_dir}/eigen-3.3.8)
 
 # ImGui
 set(imgui_dir ${external_source_dir}/imgui)
