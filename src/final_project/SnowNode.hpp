@@ -22,11 +22,11 @@ namespace GLOO {
 		void PlotSnow();
 		void Particle_to_Grid(double delta_time);
 		void Grid_to_Particle(double delta_time);
-		void add_1kp(glm::vec3 center, int c);
+		void add_1kp_cube(glm::vec3 center, int c);
+		void add_1kp_sphere(glm::vec3 center, int c);
 		std::vector<Particle> particles;
 		const int grid_resl;
 		Grid grid;
-		float mu_0, lambda_0,hardening,Dinv;
 	};
 }
 #endif 
