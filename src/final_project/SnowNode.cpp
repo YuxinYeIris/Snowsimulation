@@ -103,7 +103,7 @@ namespace GLOO {
 
 	void SnowNode::add_1kp_cube(glm::vec3 center, int c) {
 		srand(time(NULL));
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 1000; i++) {
 			float x = std::rand() % (N + 1) / (float)(N + 1), y = std::rand() % (N + 1) / (float)(N + 1), z = std::rand() % (N + 1) / (float)(N + 1);
 			Vec pos(x*2.f-1.f, y*2.f-1.f, z*2.f-1.f);
 			auto cen = Vec(center[0], center[1], center[2]);
@@ -113,7 +113,7 @@ namespace GLOO {
 	}
 	void SnowNode::add_1kp_sphere(glm::vec3 center, int c) {
         srand(time(NULL));
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             double theta = 2.f * M_PI * std::rand() / double(RAND_MAX);
             double phi = acos(1.f - 2.f * std::rand() / double(RAND_MAX));
             double x = sin(phi) * cos(theta);
