@@ -96,7 +96,7 @@ void ShadowViewerApp::SetupScene() {
     float nu = 0.2f;
 
     auto snow_node = make_unique<SnowNode>();
-    snow_node->GetTransform().SetPosition(glm::vec3(-1.f,0.72f,0.f));
+    snow_node->GetTransform().SetPosition(glm::vec3(-1.f,0.072f,0.f));
     root.AddChild(std::move(snow_node));
 
     for (auto group: mesh_data.groups){
