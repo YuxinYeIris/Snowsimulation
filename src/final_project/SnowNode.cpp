@@ -1,5 +1,5 @@
 #include "SnowNode.hpp"
-
+#include "gloo/shaders/SimpleShader.hpp"
 #include "gloo/debug/PrimitiveFactory.hpp"
 #include "gloo/components/RenderingComponent.hpp"
 #include "gloo/components/ShadingComponent.hpp"
@@ -11,6 +11,7 @@
 #include "ctime"
 #include "cstdlib"
 #define N  999
+#define M_PI 3.1415
 using Vec = Eigen::Vector3f;
 using Veci = Eigen::Vector3i;
 using Mat = Eigen::Matrix3f;
@@ -23,17 +24,20 @@ namespace GLOO {
 		initSnow();
 	}
 	void SnowNode::initSnow() {
-	    add_1kp(glm::vec3(0.55f,0.1f,0.5f),1);
+        add_1kp_sphere(glm::vec3(0.55f, 0.15f, 0.5f), 1);
         for (auto &p : particles) {
             auto sphere_node = make_unique<SceneNode>();
-            auto shader_ = std::make_shared<PhongShader>();
+            auto shader_ = std::make_shared<SimpleShader>();
             sphere_node->CreateComponent<ShadingComponent>(shader_);
-            sphere_node->CreateComponent<RenderingComponent>(PrimitiveFactory::CreateSphere(0.03f, 5, 5));
+            sphere_node->CreateComponent<RenderingComponent>(PrimitiveFactory::CreateSphere(0.01f, 25, 25));
             sphere_node->CreateComponent<MaterialComponent>(std::make_shared<Material>(Material::GetDefault()));
+            Material &material = sphere_node->GetComponentPtr<MaterialComponent>()->GetMaterial();
+            material.SetDiffuseColor(glm::vec3(1.f, 1.f, 1.f));
+            material.SetAmbientColor(glm::vec3(0.f));
             sphere_node->GetTransform().SetPosition(glm::vec3(p.x(0), p.x(1), p.x(2)));
             this->AddChild(std::move(sphere_node));
         }
-	}
+    }
 	void SnowNode::PlotSnow() {
 	    for (int j = 0; j < particles.size(); j++) {
                 this->GetChild(j).GetTransform().SetPosition(glm::vec3(particles[j].x(0), particles[j].x(1), particles[j].x(2)));
@@ -97,9 +101,9 @@ namespace GLOO {
 		}
 	}
 
-	void SnowNode::add_1kp(glm::vec3 center, int c) {
+	void SnowNode::add_1kp_cube(glm::vec3 center, int c) {
 		srand(time(NULL));
-		for (int i = 0; i < 200; i++) {
+		for (int i = 0; i < 1000; i++) {
 			float x = std::rand() % (N + 1) / (float)(N + 1), y = std::rand() % (N + 1) / (float)(N + 1), z = std::rand() % (N + 1) / (float)(N + 1);
 			Vec pos(x*2.f-1.f, y*2.f-1.f, z*2.f-1.f);
 			auto cen = Vec(center[0], center[1], center[2]);
@@ -107,4 +111,17 @@ namespace GLOO {
 			particles.push_back(Particle(v, c));
 		}
 	}
+	void SnowNode::add_1kp_sphere(glm::vec3 center, int c) {
+        srand(time(NULL));
+        for (int i = 0; i < 1000; i++) {
+            double theta = 2.f * M_PI * std::rand() / double(RAND_MAX);
+            double phi = acos(1.f - 2.f * std::rand() / double(RAND_MAX));
+            double x = sin(phi) * cos(theta);
+            double y = sin(phi) * sin(theta);
+            double z = cos(phi);
+            Vec pos(x, y, z);
+            auto v = pos * 0.08f + Vec(center[0], center[1], center[2]);
+			particles.push_back(Particle(v, c));
+        }
+    }
 }
