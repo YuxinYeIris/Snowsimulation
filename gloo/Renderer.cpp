@@ -36,7 +36,7 @@ Renderer::Renderer(Application& application) : application_(application) {
   // To render a quad on in the lower-left of the screen, you can assign texture
   // to quad_ created below and then call quad_->GetVertexArray().Render().
   plain_texture_shader_ = make_unique<PlainTextureShader>();
-  quad_ = PrimitiveFactory::CreateQuad();
+  //quad_ = PrimitiveFactory::CreateQuad();
 }
 
 void Renderer::SetRenderingOptions() const {
@@ -56,7 +56,7 @@ void Renderer::Render(const Scene& scene) const {
   RenderScene(scene);
   // TODO: When debugging your shadow map, call DebugShadowMap to render a
   // quad at the bottom left corner to display the shadow map.
-  DebugShadowMap();
+ // DebugShadowMap();
 }
 
 void Renderer::RecursiveRetrieve(const SceneNode& node,

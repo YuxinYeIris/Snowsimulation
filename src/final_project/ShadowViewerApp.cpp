@@ -47,7 +47,7 @@ void ShadowViewerApp::SetupScene() {
 
   // Setting up the camera. PLEASE DO NOT MODIFY THE INITIAL CAMERA TRANSFORM.
   auto camera_node = make_unique<ArcBallCameraNode>(50.0f, 1.0f, 10.0f);
-  camera_node->GetTransform().SetPosition(glm::vec3(0.0f, 0.0f, 8.0f));
+  camera_node->GetTransform().SetPosition(glm::vec3(0.0f, 0.0f, 7.0f));
   //camera_node->GetTransform().SetRotation(glm::vec3(0.0f, 1.0f, 0.0f), kPi / 2);
   camera_node->Calibrate();
   scene_->ActivateCamera(camera_node->GetComponentPtr<CameraComponent>());
@@ -96,7 +96,7 @@ void ShadowViewerApp::SetupScene() {
     float nu = 0.2f;
 
     auto snow_node = make_unique<SnowNode>();
-    snow_node->GetTransform().SetPosition(glm::vec3(0.f,0.072f,0.f));
+    snow_node->GetTransform().SetPosition(glm::vec3(-0.3f,-0.5,1.f));
     root.AddChild(std::move(snow_node));
 
    /* for (auto group: mesh_data.groups){

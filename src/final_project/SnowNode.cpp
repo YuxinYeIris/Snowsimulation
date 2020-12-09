@@ -24,8 +24,8 @@ namespace GLOO {
 		initSnow();
 	}
 	void SnowNode::initSnow() {
-        add_1kp_sphere(glm::vec3(0.45f, 0.15f, 0.5f), 1,glm::vec3(5.f,0,0));
-		add_1kp_sphere(glm::vec3(0.65f, 0.15f, 0.5f), 1, glm::vec3(-10.f, 0, 0));
+        add_1kp_sphere(glm::vec3(0.3f, 0.25f, 0.5f), 1,glm::vec3(5.f,0,0));
+		add_1kp_sphere(glm::vec3(0.65f, 0.25f, 0.5f), 1, glm::vec3(-10.f, 0, 0));
         for (auto &p : particles) {
             auto sphere_node = make_unique<SceneNode>();
             auto shader_ = std::make_shared<PhongShader>();
@@ -114,7 +114,7 @@ namespace GLOO {
 	}
 	void SnowNode::add_1kp_sphere(glm::vec3 center, int c,glm::vec3 V) {
         srand(time(NULL));
-        for (int i = 0; i < 600; i++) {
+        for (int i = 0; i < 280; i++) {
             double theta = 2.f * M_PI * std::rand() / double(RAND_MAX);
             double phi = acos(1.f - 2.f * std::rand() / double(RAND_MAX));
             double x = sin(phi) * cos(theta);
