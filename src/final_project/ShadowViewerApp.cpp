@@ -47,8 +47,8 @@ void ShadowViewerApp::SetupScene() {
 
   // Setting up the camera. PLEASE DO NOT MODIFY THE INITIAL CAMERA TRANSFORM.
   auto camera_node = make_unique<ArcBallCameraNode>(50.0f, 1.0f, 10.0f);
-  camera_node->GetTransform().SetPosition(glm::vec3(-5.0f, -1.0f, 0.0f));
-  camera_node->GetTransform().SetRotation(glm::vec3(0.0f, 1.0f, 0.0f), kPi / 2);
+  camera_node->GetTransform().SetPosition(glm::vec3(0.0f, 0.0f, 8.0f));
+  //camera_node->GetTransform().SetRotation(glm::vec3(0.0f, 1.0f, 0.0f), kPi / 2);
   camera_node->Calibrate();
   scene_->ActivateCamera(camera_node->GetComponentPtr<CameraComponent>());
   root.AddChild(std::move(camera_node));
@@ -96,17 +96,17 @@ void ShadowViewerApp::SetupScene() {
     float nu = 0.2f;
 
     auto snow_node = make_unique<SnowNode>();
-    snow_node->GetTransform().SetPosition(glm::vec3(-1.f,0.072f,0.f));
+    snow_node->GetTransform().SetPosition(glm::vec3(0.f,0.072f,0.f));
     root.AddChild(std::move(snow_node));
 
-    for (auto group: mesh_data.groups){
+   /* for (auto group: mesh_data.groups){
         auto group_node = make_unique<SceneNode>();
         group_node->CreateComponent<ShadingComponent>(shader);
         group_node->CreateComponent<MaterialComponent>(group.material);
         group_node->CreateComponent<RenderingComponent>(vertex_obj);
         group_node->GetComponentPtr<RenderingComponent>()->SetDrawRange(group.start_face_index,group.num_indices);
         root.AddChild(std::move(group_node));
-    }
+    }*/
 }
 
 }  // namespace GLOO

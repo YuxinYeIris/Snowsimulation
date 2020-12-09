@@ -85,6 +85,7 @@ void Grid::DetectCollision(int i) {
 		points[i] = Vec4::Zero();
 	}
 	if (y < boundary) {
-		points[i][1] = std::max(points[i](1), 0.f);
+		points[i] = Vec4::Zero();
+		//points[i][1] = std::max(points[i](1), 0.f);
 	}
 }
