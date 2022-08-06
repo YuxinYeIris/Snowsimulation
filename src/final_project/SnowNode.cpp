@@ -16,6 +16,7 @@ using Vec = Eigen::Vector3f;
 using Veci = Eigen::Vector3i;
 using Mat = Eigen::Matrix3f;
 using Vec4 = Eigen::Vector4f;
+
 namespace GLOO {
 	SnowNode::SnowNode(int n, float hardening, float E, float nu) :grid_resl(n),grid(Grid(n)),hardening(hardening){
 		mu_0 = E / (2 * (1 + nu));
