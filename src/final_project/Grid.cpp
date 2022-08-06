@@ -12,6 +12,7 @@ void Grid::ClearGrid() {
 	}
 }
 
+
 void Grid::ScatterParticle(const Particle &p, Mat stresstum) {//with Affine
 	Veci floor_pos= (p.x * inv_h - Vec(0.5, 0.5, 0.5)).cast<int>();
 	
